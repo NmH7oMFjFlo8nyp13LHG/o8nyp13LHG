@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ru-RU">
+<head>
+     <link rel="canonical" href="{% if page.url == '/' %}{{ site.url }}{% else %}{{ site.url }}{{ page.url | replace:'index.html','' }}{% endif %}">
+     <title>
+  {% if page.url == '/' %}
+    Лучшие боты для пробива информации!
+  {% elsif page.title %}
+    {{ page.title }}
+  {% else %}
+    {{ site.title }}
+  {% endif %}
+</title>
+     {% include meta.html %}
+    <!--[if lt IE 9]>
+      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/style.css" />
+    <link rel="alternate" type="application/rss+xml" title="{{ site.name }} - {{ site.description }}" href="{{ site.baseurl }}/feed.xml" />
+
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  </head>
+
+  <body>
+    <div class="wrapper-masthead">
+      <div class="container">
+        <header class="masthead clearfix">
+          <a href="{{ site.baseurl }}/" class="site-avatar"><img src="{{ site.avatar }}" /></a>
+
+          <div class="site-info">
+            <h1 class="site-name"><a href="{{ site.baseurl }}/">{{ site.name }}</a></h1>
+            <p class="site-description">{{ site.description }}</p>
+          </div>
+
+          <nav>
+            <a href="{{ site.baseurl }}/">Главная</a>
+          </nav>
+        </header>
+      </div>
+    </div>
+
+    <div id="main" role="main" class="container">
+      {{ content }}
+    </div>
+
+    <div class="wrapper-footer">
+      <div class="container">
+<footer class="footer">
+  {% include svg-icons.html %}
+  <div class="site-copyright">
+&copy; {{ "now" | date: "%Y" }} Этот сайт не существует. Вы ничего не видели.
+  </div>
+</footer>
+
+
+      </div>
+    </div>
+
+    {% include analytics.html %}
+  </body>
+</html>
