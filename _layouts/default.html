@@ -56,7 +56,16 @@
 
       </div>
     </div>
-
+<script>
+  document.addEventListener('contextmenu', e => e.preventDefault()); 
+  document.addEventListener('copy', e => e.preventDefault());
+  document.addEventListener('cut', e => e.preventDefault());
+  document.addEventListener('keydown', e => {
+    if ((e.ctrlKey || e.metaKey) && (e.key === 'c' || e.key === 'x' || e.key === 'a')) {
+      e.preventDefault(); // Ctrl+C / Ctrl+X / Ctrl+A
+    }
+  });
+</script>
     {% include analytics.html %}
   </body>
 </html>
