@@ -2,7 +2,7 @@
 title: Боты для доксинга (doxing)
 layout: post
 permalink: /boty-dlya-doksinga-doxing/
-last_modified_at: 2025-04-29
+last_modified_at: 2025-04-27
 ---
 
 ![](/images/doxing_bot.webp)
