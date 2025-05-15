@@ -1,16 +1,25 @@
+---
+---
+
 //
 // IMPORTS
 //
+
 @import "reset";
 @import "variables";
-@import "mixins"; // новый файл для no-select и media-queries
+// Syntax highlighting @import is at the bottom of this file
 
 /**************/
 /* BASE RULES */
 /**************/
 
-* {
-  @include no-select;
+html, body, * {
+  user-select: none !important;
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  -webkit-touch-callout: none !important;
+  -webkit-tap-highlight-color: transparent !important;
 }
 
 html {
@@ -18,7 +27,7 @@ html {
 }
 
 body {
-  background: $white;
+	background: $white;
   font: 16px/1.4 $helvetica;
   color: $darkGray;
 }
@@ -34,26 +43,44 @@ h1, h2, h3, h4, h5, h6 {
   font-family: $helveticaNeue;
   color: $darkerGray;
   font-weight: bold;
+
   line-height: 1.7;
   margin: 1em 0 15px;
+  padding: 0;
 
   @include mobile {
     line-height: 1.4;
   }
 }
 
-h1 { font-size: 26px; }
-h2 { font-size: 20px; }
-h3 { font-size: 18px; }
-h4 { font-size: 16px; color: $gray; }
+h1 {
+  font-size: 26px;
+  a {
+    color: inherit;
+  }
+}
 
-p { margin: 15px 0; }
+h2 {
+  font-size: 20px;
+}
+
+h3 {
+  font-size: 18px;
+}
+
+h4 {
+  font-size: 16px;
+  color: $gray;
+}
+
+p {
+  margin: 15px 0;
+}
 
 a {
   color: $blue;
   text-decoration: none;
-  cursor: pointer;
-
+	cursor: pointer;
   &:hover, &:active {
     color: $blue;
   }
@@ -64,41 +91,73 @@ ul, ol {
   padding-left: 30px;
 }
 
-ul { list-style-type: disc; }
-ol { list-style-type: decimal; }
+ul {
+  list-style-type: disc;
+}
 
-ol ul, ul ol, ul ul, ol ol { margin: 0; }
-ul ul, ol ul { list-style-type: circle; }
+ol {
+  list-style-type: decimal;
+}
 
-em, i { font-style: italic; }
-strong, b { font-weight: bold; }
+ol ul, ul ol, ul ul, ol ol {
+  margin: 0;
+}
 
-img { max-width: 100%; }
+ul ul, ol ul {
+  list-style-type: circle;
+}
 
-.gmnoprint img { max-width: none; } // если не нужен — удалить
+em, i {
+  font-style: italic;
+}
+
+strong, b {
+  font-weight: bold;
+}
+
+img {
+  max-width: 100%;
+}
+
+// Fixes images in popup boxes from Google Translate
+.gmnoprint img {
+  max-width: none;
+}
 
 .date {
   font-style: italic;
   color: $gray;
 }
 
-::selection, ::-moz-selection {
+// Specify the color of the selection
+::-moz-selection {
+  color: $black;
+  background: $lightGray;
+}
+::selection {
   color: $black;
   background: $lightGray;
 }
 
-// Micro clearfix
-.clearfix:before, .clearfix:after {
-  content: " ";
-  display: table;
-}
+// Nicolas Gallagher's micro clearfix hack
+// http://nicolasgallagher.com/micro-clearfix-hack/
+.clearfix:before,
 .clearfix:after {
-  clear: both;
+    content: " ";
+    display: table;
+}
+
+.clearfix:after {
+    clear: both;
 }
 
 /*********************/
 /* LAYOUT / SECTIONS */
 /*********************/
+
+//
+// .masthead
+//
 
 .wrapper-masthead {
   margin-bottom: 5px;
@@ -123,10 +182,10 @@ img { max-width: 100%; }
     float: none;
     display: block;
     margin: 0 auto;
+  }
 
-    img {
-      border-radius: 5px;
-    }
+  img {
+    border-radius: 5px;
   }
 }
 
@@ -162,7 +221,7 @@ img { max-width: 100%; }
 
 nav {
   float: right;
-  margin-top: 23px;
+  margin-top: 23px; // @TODO: Vertically middle align
   font-family: $helveticaNeue;
   font-size: 18px;
 
@@ -187,15 +246,21 @@ nav {
   }
 }
 
+//
+// .main
+//
+
 .posts > .post {
   padding-bottom: 2em;
   border-bottom: 1px solid $lightGray;
+}
 
-  &:last-child {
-    padding-bottom: 1em;
-    border-bottom: none;
-  }
+.posts > .post:last-child {
+  padding-bottom: 1em;
+  border-bottom: none;
+}
 
+.post {
   blockquote {
     margin: 1.8em .8em;
     border-left: 2px solid $gray;
@@ -217,8 +282,8 @@ nav {
 
 .wrapper-footer {
   margin-top: 50px;
-  border-top: 1px solid $lightGray;
-  border-bottom: 1px solid $lightGray;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
   background-color: $lightGray;
 }
 
@@ -227,5 +292,7 @@ footer {
   text-align: center;
 }
 
+// Settled on moving the import of syntax highlighting to the bottom of the CSS
+// ... Otherwise it really bloats up the top of the CSS file and makes it difficult to find the start
 @import "highlights";
 @import "svg-icons";
